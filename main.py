@@ -138,6 +138,7 @@ def assign_stats(character):
         print('')
         assign = input(f"Which score would you like to assign to {each}? [Please use index]")
         character.stats[each]['stat'] = int(stats[int(assign)])
+        character.stats[each]['mod'] = (character.stats[each]['stat'] - 10) // 2
         stats.remove(stats[int(assign)])
 
 
