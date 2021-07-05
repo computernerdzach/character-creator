@@ -129,10 +129,16 @@ def assign_stats(character):
                 character.stats[every]['stat'] += each_value
     # Generate ability scores
     print('You have the following ability scores: ')
-    for each in sorted(roll_stats()):
-        print(f'{each} ', end="")
-    print('')
-
+    stats = roll_stats()
+    for each in character.stats:
+        i = 0
+        for every in stats:
+            print(f'[{i}: {every}] ', end="")
+            i += 1
+        print('')
+        assign = input(f"Which score would you like to assign to {each}? [Please use index]")
+        character.stats[each]['stat'] = int(stats[int(assign)])
+        stats.remove(stats[int(assign)])
 
 
 def main():
@@ -154,7 +160,7 @@ def main():
 
     # SELECT BACKGROUND
     print('Please select a background from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(races):
+    for i, each in enumerate(backgrounds):
         print(f'{i}: {each}')
     the_background = int(input('Selection: '))
     the_background = list(backgrounds)[the_background]
