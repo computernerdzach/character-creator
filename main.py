@@ -1,4 +1,5 @@
 from textwrap import fill
+from random import randint
 
 # Dictionaries
 
@@ -103,6 +104,22 @@ def read_out(text):
     print(fill(text, width=120))
 
 
+def roll_stats():
+    i = 0
+    j = 0
+    all_scores = list()
+    while j < 6:
+        scores = list()
+        while i < 4:
+            scores.append(randint(0, 6))
+            i += 1
+        scores.remove(min(scores))
+        all_scores.append(sum(scores))
+        j += 1
+        i = 0
+    return all_scores
+
+
 def assign_stats(character):
     # Racial stat bonuses
     for each in races[character.race]['ability_increase']:
@@ -110,6 +127,12 @@ def assign_stats(character):
         for every in character.stats:
             if each == every:
                 character.stats[every]['stat'] += each_value
+    # Generate ability scores
+    print('You have the following ability scores: ')
+    for each in sorted(roll_stats()):
+        print(f'{each} ', end="")
+    print('')
+
 
 
 def main():
@@ -140,20 +163,23 @@ def main():
     # NAME CHARACTER
     print('Please name your character.')
     the_name = input('Name: ')
+    print(f'You are named {the_name}')
 
     # Instantiate character object with race, class, and background selections
     a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
     assign_stats(a_person)
 
     # TEST CODE
-    print(a_person.stats['CON'])
-    print(a_person.stats['WIS'])
-
-    quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
-            f"{a_person.background.lower()} before they began adventuring.\n"
-    read_out(quote)
-
-    read_out(backgrounds[the_background]['features']['shelter of the faithful'])
+    # print(a_person.stats['CON'])
+    # print(a_person.stats['WIS'])
+#
+    # quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
+    #         f"{a_person.background.lower()} before they began adventuring.\n"
+    # read_out(quote)
+#
+    # read_out(backgrounds[the_background]['features']['shelter of the faithful'])
+    for each in a_person.stats:
+        print(f"{each}: {a_person.stats[each]}")
 
 
 if __name__ == '__main__':
