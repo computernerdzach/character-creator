@@ -16,17 +16,21 @@ races = {'Hill Dwarf': {'ability_increase': {'CON': 2, 'WIS': 1}, 'age_range': {
                         'other traits': {'stone cunning': "Whenever you make an Intelligence (History) check related to"
                                                           "the origin of stonework, you are considered proficient in "
                                                           "the History skill and add double your proficiency bonus to "
-                                                          "the check, instead of your normal proficiency bonus."},
+                                                          "the check, instead of your normal proficiency bonus.",
+                                         'dark vision': "You have superior vision in dark and dim conditions. You can "
+                                                        "see in dim light within 60 feet of you as if it were bright "
+                                                        "light, and in darkness as if it were dim light. You cannot "
+                                                        "discern color in darkness, only shades of gray."},
                         'other_bonuses': {'hp': 1}, 'racial_spells': ()},
          'High Elf': 'XXXXXX'}
 
 # TODO Add other classes after BARBARIAN
 classes = {'Barbarian': {'hit_die': 12, 'hp_base': 12,
-                         'proficiencies': {'armor': ('light armor', 'medium armor', 'shields'), 'tool': 'none',
+                         'proficiencies': {'armor': ('light armor', 'medium armor', 'shields'), 'tool': list(),
                                            'saving throws': ('STR', 'CON'),
-                                           'skills': {'amount': 2, 'choices':
-                                                      ('animal handling', 'athletics', 'intimidation', 'nature',
-                                                       'perception', 'survival')}},
+                                           'add_skills': {'amount': 2, 'choices':
+                                                          ('animal handling', 'athletics', 'intimidation', 'nature',
+                                                           'perception', 'survival')}},
                          'equipment': {'a': ('greataxe', 'any martial melee weapon'),
                                        'b': ('two handaxes', 'any simple weapon'),
                                        'c': "explorer's pack and four javelins"}, 'features':
@@ -50,7 +54,7 @@ classes = {'Barbarian': {'hit_die': 12, 'hp_base': 12,
            'Bard': 'XXXXXX'}
 
 # TODO Add other backgrounds after ACOLYTE
-backgrounds = {'Acolyte': {'proficiencies': ('insight', 'religion'), 'language': 2,
+backgrounds = {'Acolyte': {'proficiencies': {'skills' : ('insight', 'religion')}, 'language': 2,
                            'equipment': ('a holy symbol', 'a prayer book or wheel', '5 sticks incense', 'vestments',
                                          'set of common clothes'), 'gold': 15,
                            'features': {'shelter of the faithful':
@@ -85,11 +89,13 @@ class Character(object):
                                                      'persuasion': 0}},
              'CON': {'stat': 0, 'mod': 0}}
 
-    proficiencies = {'armor': (), 'weapon': (), 'tool': (), 'language': (), 'skills': (), 'bonus': 2}
+    proficiencies = {'armor': list(), 'weapon': list(), 'tool': list(),
+                     'language': list(), 'skills': list(), 'choices': list()}
+    add_skills = {'amount': 0, 'bonus': 2}
     extra_languages = 0
-    resistances = {'saving throws': (), 'damage': ()}
+    resistances = {'saving throws': list(), 'damage': list()}
     other_traits = {}
-    equipment = ()
+    equipment = list()
     currency = {'gold': 0, 'silver': 0, 'copper': 0}
     features = {}
 
@@ -142,6 +148,34 @@ def assign_stats(character):
         stats.remove(stats[int(assign)])
 
 
+def assign_proficiencies(character):
+
+    # Racial proficiencies
+    for each in races[character.race]['proficiencies']:
+        each_value = races[character.race]['proficiencies'][each]
+        for every in character.proficiencies:
+            if each == every:
+                character.proficiencies[every].append(each_value)
+
+    # Class proficiencies
+    for each in classes[character.char_class]['proficiencies']:
+        each_value = classes[character.char_class]['proficiencies'][each]
+        for every in character.proficiencies:
+            if each == every:
+                character.proficiencies[every].append(each_value)
+
+    # Background proficiencies
+    for each in backgrounds[character.background]['proficiencies']:
+        each_value = backgrounds[character.background]['proficiencies'][each]
+        for every in character.proficiencies:
+            if each == every:
+                character.proficiencies[every].append(each_value)
+            elif each == 'add_skills':
+                for skill in each:
+                    skill_value = each[skill]
+                    character.proficiencies[every].append(skill_value)
+
+
 def main():
     # SELECT RACE
     print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
@@ -175,6 +209,7 @@ def main():
     # Instantiate character object with race, class, and background selections
     a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
     assign_stats(a_person)
+    assign_proficiencies(a_person)
 
     # TEST CODE
     # print(a_person.stats['CON'])
@@ -187,6 +222,8 @@ def main():
     # read_out(backgrounds[the_background]['features']['shelter of the faithful'])
     for each in a_person.stats:
         print(f"{each}: {a_person.stats[each]}")
+    for each in a_person.proficiencies:
+        print(f"{each}: {a_person.proficiencies[each]}")
 
 
 if __name__ == '__main__':
