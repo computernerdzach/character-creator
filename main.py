@@ -66,15 +66,24 @@ class Character(object):
         print('You have the following ability scores: ')
         stats = self.__roll_stats()
         for each in self.stats:
+            assigned = False
             i = 0
             for every in stats:
                 print(f'[{i}: {every}] ', end="")
                 i += 1
-            print('')
-            assign = input(f"Which score would you like to assign to {each}? [Please use index]")
-            self.stats[each]['stat'] = int(stats[int(assign)])
-            self.stats[each]['mod'] = (self.stats[each]['stat'] - 10) // 2
-            stats.remove(stats[int(assign)])
+                print('')
+            while not assigned:
+                # This exception catch will inform the user of an invalid selection and repeatedly ask for the same thing until a valid choice is given
+                assign = input(f"Which score would you like to assign to {each}? [Please use index]")
+                try:
+                    self.stats[each]['stat'] = int(stats[int(assign)])
+                except IndexError as e:
+                    print(f'Invalid selection. {e}')
+                    continue
+                self.stats[each]['mod'] = (self.stats[each]['stat'] - 10) // 2
+                stats.remove(stats[int(assign)])
+                # This boolean will only flip to True once this While block fully succeeds, finally breaking the loop
+                assigned = True
 
     def calc_stats(self):
         raise NotImplementedError('calc_stats not implemented yet')
@@ -162,6 +171,7 @@ def select_choices(key):
         print(f'You selected {selection}')
     except IndexError as e:
         print(f'Invalid selection. {e}')
+        # This exception catch uses "recursion" to call the function within itself every time this error is caught
         selection = select_choices(key)
     return selection
 
