@@ -222,12 +222,13 @@ def read_out(text):
     print(fill(text, width=120))
 
 
-def select_choices(key, mapping):
+def select_choices(key):
+    mapping = Character.CHOICE_MAPPINGS[key]
     print(f'Please select a {key} from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(mapping):
         print(f'{i}: {each}')
     index = int(input('Selection: '))
-    selection = list(races)[index]
+    selection = list(mapping)[index]
     print(f'You selected {selection}')
     return selection
 
@@ -241,9 +242,9 @@ def name_character():
 
 
 def main():
-    the_race = select_choices('races', races)
-    the_class = select_choices('classes', classes)
-    the_background = select_choices('backgrounds', backgrounds)
+    the_race = select_choices('races')
+    the_class = select_choices('classes')
+    the_background = select_choices('backgrounds')
     the_name = name_character()
 
     # Instantiate character object with race, class, and background selections
