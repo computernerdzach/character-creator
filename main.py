@@ -221,37 +221,17 @@ def assign_proficiencies(character):
                     print(f"{character.stats[each][every]}")
 
 
-def select_race():
-    # SELECT RACE
-    print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(races):
+CHOICE_MAPPINGS = {'races': races, 'classes': classes, 'backgrounds': backgrounds}
+
+
+def select_choices(key, mapping):
+    print(f'Please select a {key} from the list below. [INTEGERS ONLY PLEASE]')
+    for i, each in enumerate(mapping):
         print(f'{i}: {each}')
-    the_race = int(input('Selection: '))
-    the_race = list(races)[the_race]
-    print(f'You selected {the_race}')
-    return the_race
-
-
-def select_char_class():
-    # SELECT CLASS
-    print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(classes):
-        print(f'{i}: {each}')
-    the_class = int(input('Selection: '))
-    the_class = list(classes)[the_class]
-    print(f'You selected {the_class}')
-    return the_class
-
-
-def select_background():
-    # SELECT BACKGROUND
-    print('Please select a background from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(backgrounds):
-        print(f'{i}: {each}')
-    the_background = int(input('Selection: '))
-    the_background = list(backgrounds)[the_background]
-    print(f'You selected {the_background}')
-    return the_background
+    index = int(input('Selection: '))
+    selection = list(races)[index]
+    print(f'You selected {selection}')
+    return selection
 
 
 def name_character():
@@ -263,9 +243,9 @@ def name_character():
 
 
 def main():
-    the_race = select_race()
-    the_class = select_char_class()
-    the_background = select_background()
+    the_race = select_choices('races', races)
+    the_class = select_choices('classes', classes)
+    the_background = select_choices('backgrounds', backgrounds)
     the_name = name_character()
 
     # Instantiate character object with race, class, and background selections
