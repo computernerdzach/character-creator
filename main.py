@@ -157,8 +157,12 @@ def select_choices(key):
     for i, each in enumerate(mapping):
         print(f'{i}: {each}')
     index = int(input('Selection: '))
-    selection = list(mapping)[index]
-    print(f'You selected {selection}')
+    try:
+        selection = list(mapping)[index]
+        print(f'You selected {selection}')
+    except IndexError as e:
+        print(f'Invalid selection. {e}')
+        selection = select_choices(key)
     return selection
 
 
