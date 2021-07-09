@@ -26,50 +26,51 @@ races = {'Hill Dwarf': {'ability_increase': {'CON': 2, 'WIS': 1}, 'age_range': {
 
 # TODO Add other classes after BARBARIAN
 classes = {'Barbarian': {'hit_die': 12, 'hp_base': 12,
-                         'proficiencies': {'armor': ('light armor', 'medium armor', 'shields'), 'tool': list(),
+                         'proficiencies': {'armor': ('light armor', 'medium armor', 'shields'),
+                                           'tool': list(),
                                            'saving throws': ('STR', 'CON'),
                                            'add_skills': {'amount': 2, 'choices':
-                                                          ('animal handling', 'athletics', 'intimidation', 'nature',
-                                                           'perception', 'survival')}},
+                                               ('animal handling', 'athletics', 'intimidation', 'nature',
+                                                'perception', 'survival')}},
                          'equipment': {'a': ('greataxe', 'any martial melee weapon'),
                                        'b': ('two handaxes', 'any simple weapon'),
                                        'c': "explorer's pack and four javelins"}, 'features':
-                         {'rage': "In battle, you fight with primal ferocity. On your turn, you can enter a rage as"
-                                  " a bonus action. While raging, you gain the following benefits if you aren’t "
-                                  "wearing heavy armor: • You have advantage on Strength checks and Strength saving"
-                                  " throws. • When you make a melee weapon attack using Strength, you gain a bonus "
-                                  "to the damage roll that increases as you gain levels as a barbarian, as shown in"
-                                  " the Rage Damage column of the Barbarian table. • You have resistance to "
-                                  "bludgeoning, piercing, and slashing damage. If you are able to cast spells, you "
-                                  "can’t cast them or concentrate on them while raging. Your rage lasts for 1 "
-                                  "minute. It ends early if you are knocked unconscious or if your turn ends and "
-                                  "you haven’t attacked a hostile creature since your last turn or taken damage "
-                                  "since then. You can also end your rage on your turn as a bonus action. Once you "
-                                  "have raged the number of times shown for your barbarian level in the Rages "
-                                  "column of the Barbarian table, you must finish a long rest before you can rage "
-                                  "again.",
-                          'unarmored defense': "While you are not wearing any armor, your Armor Class equals 10 + "
-                                               "your Dexterity modifier + your Constitution modifier. You can use a"
-                                               " shield and still gain this benefit."}},
+                             {'rage': "In battle, you fight with primal ferocity. On your turn, you can enter a rage as"
+                                      " a bonus action. While raging, you gain the following benefits if you aren’t "
+                                      "wearing heavy armor: • You have advantage on Strength checks and Strength saving"
+                                      " throws. • When you make a melee weapon attack using Strength, you gain a bonus "
+                                      "to the damage roll that increases as you gain levels as a barbarian, as shown in"
+                                      " the Rage Damage column of the Barbarian table. • You have resistance to "
+                                      "bludgeoning, piercing, and slashing damage. If you are able to cast spells, you "
+                                      "can’t cast them or concentrate on them while raging. Your rage lasts for 1 "
+                                      "minute. It ends early if you are knocked unconscious or if your turn ends and "
+                                      "you haven’t attacked a hostile creature since your last turn or taken damage "
+                                      "since then. You can also end your rage on your turn as a bonus action. Once you "
+                                      "have raged the number of times shown for your barbarian level in the Rages "
+                                      "column of the Barbarian table, you must finish a long rest before you can rage "
+                                      "again.",
+                              'unarmored defense': "While you are not wearing any armor, your Armor Class equals 10 + "
+                                                   "your Dexterity modifier + your Constitution modifier. You can use a"
+                                                   " shield and still gain this benefit."}},
            'Bard': 'XXXXXX'}
 
 # TODO Add other backgrounds after ACOLYTE
-backgrounds = {'Acolyte': {'proficiencies': {'skills' : ('insight', 'religion')}, 'language': 2,
+backgrounds = {'Acolyte': {'proficiencies': {'skills': ('insight', 'religion')}, 'language': 2,
                            'equipment': ('a holy symbol', 'a prayer book or wheel', '5 sticks incense', 'vestments',
                                          'set of common clothes'), 'gold': 15,
                            'features': {'shelter of the faithful':
-                                        "As an acolyte, you command the respect of those who share your faith, and you "
-                                        "can perform the religious ceremonies of your deity. You and your adventuring "
-                                        "companions can expect to receive free healing and care at a temple, shrine, or"
-                                        " other established presence of your faith, though you must provide any "
-                                        "material components needed for spells. Those who share your religion will "
-                                        "support you (but only you) at a modest lifestyle. You might also have ties to "
-                                        "a specific temple dedicated to your chosen deity or pantheon, and you have a "
-                                        "residence there. This could be the temple where you used to serve, if you "
-                                        "remain on good terms with it, or a temple where you have found a new home. "
-                                        "While near your temple, you can call upon the priests for assistance, provided"
-                                        " the assistance you ask for is not hazardous and you remain in goodstanding "
-                                        "with your temple."}}}
+                                            "As an acolyte, you command the respect of those who share your faith, and you "
+                                            "can perform the religious ceremonies of your deity. You and your adventuring "
+                                            "companions can expect to receive free healing and care at a temple, shrine, or"
+                                            " other established presence of your faith, though you must provide any "
+                                            "material components needed for spells. Those who share your religion will "
+                                            "support you (but only you) at a modest lifestyle. You might also have ties to "
+                                            "a specific temple dedicated to your chosen deity or pantheon, and you have a "
+                                            "residence there. This could be the temple where you used to serve, if you "
+                                            "remain on good terms with it, or a temple where you have found a new home. "
+                                            "While near your temple, you can call upon the priests for assistance, provided"
+                                            " the assistance you ask for is not hazardous and you remain in goodstanding "
+                                            "with your temple."}}}
 
 features = {'grappler': "• You have advantage on attack rolls against a creature you are grappling. • You can use your "
                         "action to try to pin a creature grappled by you. To do so, make another grapple check. If you "
@@ -78,7 +79,6 @@ features = {'grappler': "• You have advantage on attack rolls against a creatu
 
 # TODO Assign stat values, pick proficiencies, distribute equipment and gold
 class Character(object):
-
     stats = {'STR': {'stat': 0, 'mod': 0, 'skills': {'athletics': 0}},
              'DEX': {'stat': 0, 'mod': 0, 'skills': {'acrobatics': 0, 'sleight of hand': 0, 'stealth': 0}},
              'INT': {'stat': 0, 'mod': 0, 'skills': {'arcana': 0, 'history': 0, 'investigation': 0, 'nature': 0,
@@ -89,9 +89,10 @@ class Character(object):
                                                      'persuasion': 0}},
              'CON': {'stat': 0, 'mod': 0}}
 
-    proficiencies = {'armor': list(), 'weapon': list(), 'tool': list(),
-                     'language': list(), 'skills': list(), 'choices': list()}
-    add_skills = {'amount': 0, 'bonus': 2}
+    proficiencies = {'armor': list(), 'weapon': list(), 'tool': list(),'language': list(), 'skills': list(),
+                     'choices': list(), 'add_skills': {'choices': list(), 'amount': 0}}
+
+    proficiency_mod = 2
     extra_languages = 0
     resistances = {'saving throws': list(), 'damage': list()}
     other_traits = {}
@@ -148,8 +149,14 @@ def assign_stats(character):
         stats.remove(stats[int(assign)])
 
 
-def assign_proficiencies(character):
+# def set_stats(character):
+#     for character.proficiencies in character.stats:
+#         print(character.proficiencies)
+#         if character.proficiencies == character.stats:
+#             print(character.stats)
 
+
+def assign_proficiencies(character):
     # Racial proficiencies
     for each in races[character.race]['proficiencies']:
         each_value = races[character.race]['proficiencies'][each]
@@ -161,22 +168,63 @@ def assign_proficiencies(character):
     for each in classes[character.char_class]['proficiencies']:
         each_value = classes[character.char_class]['proficiencies'][each]
         for every in character.proficiencies:
-            if each == every:
+            if each == every and each != 'add_skills':
                 character.proficiencies[every].append(each_value)
+            elif each == every and each == 'add_skills':
+                character.proficiencies['add_skills']['amount'] += \
+                    classes[character.char_class]['proficiencies']['add_skills']['amount']
+                more_choices = classes[character.char_class]['proficiencies']['add_skills']['choices']
+                for butt in more_choices:
+                    character.proficiencies['add_skills']['choices'].append(butt)
+
+    # print(f"Add'l skills to choose: {character.proficiencies['add_skills']['amount']}")
 
     # Background proficiencies
     for each in backgrounds[character.background]['proficiencies']:
         each_value = backgrounds[character.background]['proficiencies'][each]
         for every in character.proficiencies:
-            if each == every:
+            if each == every and each != 'add_skills':
                 character.proficiencies[every].append(each_value)
-            elif each == 'add_skills':
-                for skill in each:
-                    skill_value = each[skill]
-                    character.proficiencies[every].append(skill_value)
+            elif each == every and each == 'add_skills':
+                character.proficiencies['add_skills']['amount'] += \
+                    backgrounds[character.background]['proficiencies']['add_skills']['amount']
+
+    # Additional skill proficiencies
+    print(character.stats)
+    amount = character.proficiencies['add_skills']['amount']
+    i = 0
+    while i < amount:
+        left = amount - i
+        print(f"You have {left} more proficiencies to select. Please choose one from below:")
+        choices = list(character.proficiencies['add_skills']['choices'])
+        has = character.proficiencies['skills']
+        for each in choices:
+            if each in has:
+                choices.remove(each)
+        j = 0
+        for each in choices:
+            print(f"{j}: {each}")
+            j += 1
+        selection = int(input('Selection: '))
+        character.proficiencies['skills'].append(choices[selection])
+        selected = choices[selection]
+        for nanny in choices:
+            if nanny == selected:
+                choices.remove(nanny)
+        for ability in character.stats:
+            for skill in character.stats[ability]:
+                if skill == 'skills':
+                    for tech in character.stats[ability][skill]:
+                        if tech == selected:
+                            character.stats[ability][skill][tech] += character.proficiency_mod
+        i += 1
+        for each in character.stats:
+            for every in each:
+                if every == 'skills':
+                    print(f"{character.stats[each][every]}")
 
 
-def main():
+def select_race():
     # SELECT RACE
     print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(races):
@@ -184,7 +232,10 @@ def main():
     the_race = int(input('Selection: '))
     the_race = list(races)[the_race]
     print(f'You selected {the_race}')
+    return the_race
 
+
+def select_char_class():
     # SELECT CLASS
     print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(classes):
@@ -192,7 +243,10 @@ def main():
     the_class = int(input('Selection: '))
     the_class = list(classes)[the_class]
     print(f'You selected {the_class}')
+    return the_class
 
+
+def select_background():
     # SELECT BACKGROUND
     print('Please select a background from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(backgrounds):
@@ -200,30 +254,51 @@ def main():
     the_background = int(input('Selection: '))
     the_background = list(backgrounds)[the_background]
     print(f'You selected {the_background}')
+    return the_background
 
+
+def name_character():
     # NAME CHARACTER
     print('Please name your character.')
     the_name = input('Name: ')
     print(f'You are named {the_name}')
+    return the_name
+
+
+def main():
+    the_race = select_race()
+    the_class = select_char_class()
+    the_background = select_background()
+    the_name = name_character()
+
+    a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
+
+
+    # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
 
     # Instantiate character object with race, class, and background selections
-    a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
+
     assign_stats(a_person)
+
+    # set_stats(a_person)
+
     assign_proficiencies(a_person)
 
     # TEST CODE
     # print(a_person.stats['CON'])
     # print(a_person.stats['WIS'])
+
+
 #
-    # quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
-    #         f"{a_person.background.lower()} before they began adventuring.\n"
-    # read_out(quote)
+# quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
+#         f"{a_person.background.lower()} before they began adventuring.\n"
+# read_out(quote)
 #
-    # read_out(backgrounds[the_background]['features']['shelter of the faithful'])
-    for each in a_person.stats:
-        print(f"{each}: {a_person.stats[each]}")
-    for each in a_person.proficiencies:
-        print(f"{each}: {a_person.proficiencies[each]}")
+# read_out(backgrounds[the_background]['features']['shelter of the faithful'])
+# for each in a_person.stats:
+#     print(f"{each}: {a_person.stats[each]}")
+# for each in a_person.proficiencies:
+#     print(f"{each}: {a_person.proficiencies[each]}")
 
 
 if __name__ == '__main__':
