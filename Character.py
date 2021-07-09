@@ -7,6 +7,10 @@ from definitions.races import races
 
 # TODO Assign stat values, distribute equipment and gold
 class Character(object):
+    """
+    The Character object is created with chosen user inputs
+    and provides methods for assigning stats proficiencies
+    """
 
     CHOICE_MAPPINGS = {'races': races, 'classes': classes, 'backgrounds': backgrounds}
 
@@ -39,6 +43,10 @@ class Character(object):
 
     @staticmethod
     def __roll_stats():
+        """
+        Private helper method; rolls 6 individual stat numbers
+        :return: List; rolled scores
+        """
         i = 0
         j = 0
         all_scores = list()
@@ -54,6 +62,10 @@ class Character(object):
         return all_scores
 
     def assign_stats(self):
+        """
+        Prompts user for which scores they would like assigned to which stat
+        :return: None
+        """
         # Racial stat bonuses
         for each in races[self.race]['ability_increase']:
             each_value = races[self.race]['ability_increase'][each]
@@ -85,6 +97,10 @@ class Character(object):
         raise NotImplementedError('calc_stats not implemented yet')
 
     def assign_proficiencies(self):
+        """
+        Adds relevant proficiencies to this object from the mapping definitions
+        :return: None
+        """
         # Racial proficiencies
         for each in races[self.race]['proficiencies']:
             each_value = races[self.race]['proficiencies'][each]
