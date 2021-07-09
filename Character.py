@@ -65,11 +65,9 @@ class Character(object):
         stats = self.__roll_stats()
         for each in self.stats:
             assigned = False
-            i = 0
-            for every in stats:
-                print(f'[{i}: {every}] ', end="")
-                i += 1
-                print('')
+            # List Comprehension; it's cool
+            choices = [f'[{i}: {every}]' for i, every in enumerate(stats)]
+            print(' '.join(choices))
             while not assigned:
                 # This exception catch will inform the user of an invalid selection and repeatedly ask for the same thing until a valid choice is given
                 assign = input(f"Which score would you like to assign to {each}? [Please use index]")
