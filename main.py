@@ -8,18 +8,26 @@ def read_out(text):
 
 
 def select_choices(key):
+    selection = None
     mapping = Character.CHOICE_MAPPINGS[key]
-    print(f'Please select a {key} from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(mapping):
-        print(f'{i}: {each}')
-    index = int(input('Selection: '))
-    try:
-        selection = list(mapping)[index]
-        print(f'You selected {selection}')
-    except IndexError as e:
-        print(f'Invalid selection. {e}')
-        # This exception catch uses "recursion" to call the function within itself every time this error is caught
-        selection = select_choices(key)
+    # A while loop is used here to retry the input if it is invalid
+    while selection is None:
+        print(f'Please select a {key} from the list below. [INTEGERS ONLY PLEASE]')
+        for i, each in enumerate(mapping):
+            print(f'{i}: {each}')
+        choice = input('Selection: ')
+        try:
+            index = int(choice)
+        except ValueError as e:
+            print(f'"{choice}" is not a valid integer. {e}')
+            continue
+        try:
+            # The loop will only break once the selection is valid
+            selection = list(mapping)[index]
+            print(f'You selected {selection}')
+        except IndexError as e:
+            print(f'Invalid selection: "{index}". {e}')
+            continue
     return selection
 
 

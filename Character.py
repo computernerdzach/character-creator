@@ -73,8 +73,8 @@ class Character(object):
                 assign = input(f"Which score would you like to assign to {each}? [Please use index]")
                 try:
                     self.stats[each]['stat'] = int(stats[int(assign)])
-                except IndexError as e:
-                    print(f'Invalid selection. {e}')
+                except (IndexError, ValueError) as e:
+                    print(f'Invalid selection: "{assign}". {e}')
                     continue
                 self.stats[each]['mod'] = (self.stats[each]['stat'] - 10) // 2
                 stats.remove(stats[int(assign)])
