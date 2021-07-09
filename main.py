@@ -72,12 +72,13 @@ backgrounds = {'Acolyte': {'proficiencies': {'skills': ('insight', 'religion')},
                                             " the assistance you ask for is not hazardous and you remain in goodstanding "
                                             "with your temple."}}}
 
+# TODO features is not currently utilized
 features = {'grappler': "• You have advantage on attack rolls against a creature you are grappling. • You can use your "
                         "action to try to pin a creature grappled by you. To do so, make another grapple check. If you "
                         "succeed, you and the creature are both restrained until the grapple ends."}
 
 
-# TODO Assign stat values, pick proficiencies, distribute equipment and gold
+# TODO Assign stat values, distribute equipment and gold
 class Character(object):
     stats = {'STR': {'stat': 0, 'mod': 0, 'skills': {'athletics': 0}},
              'DEX': {'stat': 0, 'mod': 0, 'skills': {'acrobatics': 0, 'sleight of hand': 0, 'stealth': 0}},
@@ -150,10 +151,6 @@ def assign_stats(character):
 
 
 # def calc_stats(character):
-#     for character.proficiencies in character.stats:
-#         print(character.proficiencies)
-#         if character.proficiencies == character.stats:
-#             print(character.stats)
 
 
 def assign_proficiencies(character):
@@ -271,15 +268,12 @@ def main():
     the_background = select_background()
     the_name = name_character()
 
+    # Instantiate character object with race, class, and background selections
     a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
     # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
 
-    # Instantiate character object with race, class, and background selections
-
     assign_stats(a_person)
-
     # calc_stats(a_person)
-
     assign_proficiencies(a_person)
 
     # TEST CODE
@@ -287,14 +281,14 @@ def main():
         print(f"{each}: {a_person.stats[each]}")
     for each in a_person.proficiencies:
         print(f"{each}: {a_person.proficiencies[each]}")
+
+    quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
+            f"{a_person.background.lower()} before they began adventuring.\n"
+    read_out(quote)
+
     # print(a_person.stats['CON'])
     # print(a_person.stats['WIS'])
 
-
-#
-# quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
-#         f"{a_person.background.lower()} before they began adventuring.\n"
-# read_out(quote)
 
 if __name__ == '__main__':
     main()
