@@ -1,81 +1,10 @@
-from textwrap import fill
 from random import randint
+from textwrap import fill
 
-# Dictionaries
-
-# TODO Add other races after HILL DWARF
-races = {'Hill Dwarf': {'ability_increase': {'CON': 2, 'WIS': 1}, 'age_range': {'floor': 50, 'ceiling': 350},
-                        'alignment': "Most dwarves are lawful, believing firmly in the benefits of a well-ordered "
-                                     "society. They tend toward good as well, with a strong sense of fair play and a "
-                                     "belief that everyone deserves to share in the benefits of a just order.",
-                        'size': 'medium', 'height': {'floor': 4, 'ceiling': 5}, 'weight': 150, 'speed': 30,
-                        'proficiencies': {'weapon': ('battleaxe', 'handaxe', 'light hammer', 'warhammer'),
-                                          'tool': ("smith's tools", "brewer's tools", "mason's tools"),
-                                          'language': ('dwarven', 'common')},
-                        'resistances': {'saving throws': 'poison', 'damage': 'poison'},
-                        'other traits': {'stone cunning': "Whenever you make an Intelligence (History) check related to"
-                                                          "the origin of stonework, you are considered proficient in "
-                                                          "the History skill and add double your proficiency bonus to "
-                                                          "the check, instead of your normal proficiency bonus.",
-                                         'dark vision': "You have superior vision in dark and dim conditions. You can "
-                                                        "see in dim light within 60 feet of you as if it were bright "
-                                                        "light, and in darkness as if it were dim light. You cannot "
-                                                        "discern color in darkness, only shades of gray."},
-                        'other_bonuses': {'hp': 1}, 'racial_spells': ()},
-         'High Elf': 'XXXXXX'}
-
-# TODO Add other classes after BARBARIAN
-classes = {'Barbarian': {'hit_die': 12, 'hp_base': 12,
-                         'proficiencies': {'armor': ('light armor', 'medium armor', 'shields'),
-                                           'tool': list(),
-                                           'saving throws': ('STR', 'CON'),
-                                           'add_skills': {'amount': 2, 'choices':
-                                               ('animal handling', 'athletics', 'intimidation', 'nature',
-                                                'perception', 'survival')}},
-                         'equipment': {'a': ('greataxe', 'any martial melee weapon'),
-                                       'b': ('two handaxes', 'any simple weapon'),
-                                       'c': "explorer's pack and four javelins"}, 'features':
-                             {'rage': "In battle, you fight with primal ferocity. On your turn, you can enter a rage as"
-                                      " a bonus action. While raging, you gain the following benefits if you aren’t "
-                                      "wearing heavy armor: • You have advantage on Strength checks and Strength saving"
-                                      " throws. • When you make a melee weapon attack using Strength, you gain a bonus "
-                                      "to the damage roll that increases as you gain levels as a barbarian, as shown in"
-                                      " the Rage Damage column of the Barbarian table. • You have resistance to "
-                                      "bludgeoning, piercing, and slashing damage. If you are able to cast spells, you "
-                                      "can’t cast them or concentrate on them while raging. Your rage lasts for 1 "
-                                      "minute. It ends early if you are knocked unconscious or if your turn ends and "
-                                      "you haven’t attacked a hostile creature since your last turn or taken damage "
-                                      "since then. You can also end your rage on your turn as a bonus action. Once you "
-                                      "have raged the number of times shown for your barbarian level in the Rages "
-                                      "column of the Barbarian table, you must finish a long rest before you can rage "
-                                      "again.",
-                              'unarmored defense': "While you are not wearing any armor, your Armor Class equals 10 + "
-                                                   "your Dexterity modifier + your Constitution modifier. You can use a"
-                                                   " shield and still gain this benefit."}},
-           'Bard': 'XXXXXX'}
-
-# TODO Add other backgrounds after ACOLYTE
-backgrounds = {'Acolyte': {'proficiencies': {'skills': ('insight', 'religion')}, 'language': 2,
-                           'equipment': ('a holy symbol', 'a prayer book or wheel', '5 sticks incense', 'vestments',
-                                         'set of common clothes'), 'gold': 15,
-                           'features': {'shelter of the faithful':
-                                            "As an acolyte, you command the respect of those who share your faith, and you "
-                                            "can perform the religious ceremonies of your deity. You and your adventuring "
-                                            "companions can expect to receive free healing and care at a temple, shrine, or"
-                                            " other established presence of your faith, though you must provide any "
-                                            "material components needed for spells. Those who share your religion will "
-                                            "support you (but only you) at a modest lifestyle. You might also have ties to "
-                                            "a specific temple dedicated to your chosen deity or pantheon, and you have a "
-                                            "residence there. This could be the temple where you used to serve, if you "
-                                            "remain on good terms with it, or a temple where you have found a new home. "
-                                            "While near your temple, you can call upon the priests for assistance, provided"
-                                            " the assistance you ask for is not hazardous and you remain in goodstanding "
-                                            "with your temple."}}}
-
-# TODO features is not currently utilized
-features = {'grappler': "• You have advantage on attack rolls against a creature you are grappling. • You can use your "
-                        "action to try to pin a creature grappled by you. To do so, make another grapple check. If you "
-                        "succeed, you and the creature are both restrained until the grapple ends."}
+from definitions.backgrounds import backgrounds
+from definitions.classes import classes
+from definitions.features import features
+from definitions.races import races
 
 
 # TODO Assign stat values, distribute equipment and gold
