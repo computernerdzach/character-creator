@@ -149,7 +149,7 @@ def assign_stats(character):
         stats.remove(stats[int(assign)])
 
 
-# def set_stats(character):
+# def calc_stats(character):
 #     for character.proficiencies in character.stats:
 #         print(character.proficiencies)
 #         if character.proficiencies == character.stats:
@@ -272,19 +272,21 @@ def main():
     the_name = name_character()
 
     a_person = Character(race=the_race, char_class=the_class, background=the_background, name=the_name)
-
-
     # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
 
     # Instantiate character object with race, class, and background selections
 
     assign_stats(a_person)
 
-    # set_stats(a_person)
+    # calc_stats(a_person)
 
     assign_proficiencies(a_person)
 
     # TEST CODE
+    for each in a_person.stats:
+        print(f"{each}: {a_person.stats[each]}")
+    for each in a_person.proficiencies:
+        print(f"{each}: {a_person.proficiencies[each]}")
     # print(a_person.stats['CON'])
     # print(a_person.stats['WIS'])
 
@@ -293,13 +295,6 @@ def main():
 # quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
 #         f"{a_person.background.lower()} before they began adventuring.\n"
 # read_out(quote)
-#
-# read_out(backgrounds[the_background]['features']['shelter of the faithful'])
-# for each in a_person.stats:
-#     print(f"{each}: {a_person.stats[each]}")
-# for each in a_person.proficiencies:
-#     print(f"{each}: {a_person.proficiencies[each]}")
-
 
 if __name__ == '__main__':
     main()
