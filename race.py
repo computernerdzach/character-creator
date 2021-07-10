@@ -2,30 +2,26 @@ from abc import ABC, abstractmethod
 
 
 class Race(ABC):
-    def __init__(self, name, a_race):
+    def __init__(self, name):
         self.name = name
         self.aRace = a_race
         self.race_choices = ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'HalfElf', 'HalfOrc', 'Human', 'Tiefling']
 
-    @abstractmethod
-    def get_name(self):
-        print('Please name your character.')
-        the_name = input('Name: ')
-        print(f'You are named {the_name}')
-        return the_name
-
-    @abstractmethod
     def pick_race(self):
         # available_races: ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'HalfElf', 'HalfOrc', 'Human', 'Tiefling']
         print('Please select your race. [INT only please]')
-        choices = Race.race_choices
-        for i, choice in enumerate(Race.choices):
+        for i, choice in enumerate(self.race_choices):
             print(f"{i}:    {choice}")
-        the_race = input('Race: ')
-        print(f"You have selected {choices[the_race]}")
-        return choices[the_race]
+        the_race = int(input('Race: '))
+        print(f"You have selected {self.race_choices[the_race]}")
+        return self.race_choices[the_race]
 
-    size = 'medium'
+    @property
+    @abstractmethod
+    def size(self):
+        pass
+
+    # size = 'medium'
     hpMod = 0
     maxAge = 0
     age = 0

@@ -1,7 +1,7 @@
 from textwrap import fill
 from random import randint
-import race
-import Dragonborn
+from race import Race
+from Dragonborn import Dragonborn
 
 # Dictionaries
 
@@ -256,7 +256,11 @@ def assign_proficiencies(character):
     # rcbn['name'] = the_name
 #
     # return rcbn
-
+def get_name():
+    print('Please name your character.')
+    the_name = input('Name: ')
+    print(f'You are named {the_name}')
+    return the_name
 
 def main():
     # your_character = race_class_back_name()
@@ -264,13 +268,17 @@ def main():
     #     your_character['background'], your_character['name']
 
     # Instantiate character object with race, class, and background selections
-    self = race.Race
-    print(self.name)
-    print(self.age)
+    # self = Dragonborn
+    # print(self.name)
+    # print(self.age)
 
-    a_person = race.Dragonborn(name=race.Race.get_name(self.name), aRace=race.Race.pick_race(self.aRace))
-    print(a_person.name)
-    print(a_person.hit_points)
+    # a_person = Race(self, a_race=self.pick_race())
+    name = get_name()
+    a_person = Dragonborn(name=name)
+
+
+    # print(a_person.name)
+    # print(a_person.hit_points)
     # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
 
     # assign_stats(a_person)
@@ -290,3 +298,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
