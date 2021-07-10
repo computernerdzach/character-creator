@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-import Dragonborn
+from Dragonborn import Dragonborn
 
 
 class Race(ABC):
-    def __init__(self, name, aRace):
+    def __init__(self, name, a_race):
         self.name = name
-        self.aRace = aRace
+        self.aRace = a_race
         self.race_choices = ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'HalfElf', 'HalfOrc', 'Human', 'Tiefling']
 
     @abstractmethod
@@ -19,10 +19,10 @@ class Race(ABC):
     def pick_race(self):
         # available_races: ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'HalfElf', 'HalfOrc', 'Human', 'Tiefling']
         print('Please select your race. [INT only please]')
-        for i, choice in enumerate(['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'HalfElf', 'HalfOrc', 'Human', 'Tiefling']):
+        for i, choice in enumerate(Race.race_choices):
             print(f"{i}:    {choice}")
         the_race = input('Race: ')
-        print(f"You have selected {choice}")
+        print(f"You have selected {the_race}")
         return the_race
 
     size = 'medium'
