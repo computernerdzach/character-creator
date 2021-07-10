@@ -1,5 +1,7 @@
 from textwrap import fill
 from random import randint
+import race
+import Dragonborn
 
 # Dictionaries
 
@@ -103,11 +105,12 @@ class Character(object):
     currency = {'gold': 0, 'silver': 0, 'copper': 0}
     features = {}
 
-    def __init__(self, race, char_class, background, name):
+    def __init__(self, race, char_class, background, name, race_choices):
         self.race = race
         self.char_class = char_class
         self.background = background
         self.name = name
+        self.raceChoices = race_choices
 
 
 def read_out(text):
@@ -115,8 +118,7 @@ def read_out(text):
 
 
 def roll_stats():
-    i = 0
-    j = 0
+    i, j = 0, 0
     all_scores = list()
     while j < 6:
         scores = list()
@@ -176,6 +178,7 @@ def assign_proficiencies(character):
     # print(f"Add'l skills to choose: {character.proficiencies['add_skills']['amount']}")
 
     # Background proficiencies
+    # TODO I think there are flaws in this part
     for each in backgrounds[character.background]['proficiencies']:
         each_value = backgrounds[character.background]['proficiencies'][each]
         for every in character.proficiencies:
@@ -219,63 +222,70 @@ def assign_proficiencies(character):
                     print(f"{character.stats[each][every]}")
 
 
-def race_class_back_name():
-    rcbn = {'race': '', 'char_class': '', 'background': '', 'name': ''}
+# def race_class_back_name():
+    # rcbn = {'race': race.pick_race(), 'char_class': '', 'background': '', 'name': race.get_name()}
+    #
+    # print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
+    # for i, each in enumerate(races):
+    #     print(f'{i}: {each}')
+    # the_race = int(input('Selection: '))
+    # the_race = list(races)[the_race]
+    # print(f"You selected {rcbn['race']}, and named them {rcbn['name']}")
+    # rcbn['char_class']
+    # rcbn['race'] = the_race
 
-    print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(races):
-        print(f'{i}: {each}')
-    the_race = int(input('Selection: '))
-    the_race = list(races)[the_race]
-    print(f'You selected {the_race}')
-    rcbn['race'] = the_race
-
-    print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(classes):
-        print(f'{i}: {each}')
-    the_class = int(input('Selection: '))
-    the_class = list(classes)[the_class]
-    print(f'You selected {the_class}')
-    rcbn['char_class'] = the_class
-
-    print('Please select a background from the list below. [INTEGERS ONLY PLEASE]')
-    for i, each in enumerate(backgrounds):
-        print(f'{i}: {each}')
-    the_background = int(input('Selection: '))
-    the_background = list(backgrounds)[the_background]
-    print(f'You selected {the_background}')
-    rcbn['background'] = the_background
-
-    print('Please name your character.')
-    the_name = input('Name: ')
-    print(f'You are named {the_name}')
-    rcbn['name'] = the_name
-
-    return rcbn
+    # print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
+    # for i, each in enumerate(classes):
+    #     print(f'{i}: {each}')
+    # the_class = int(input('Selection: '))
+    # the_class = list(classes)[the_class]
+    # print(f'You selected {the_class}')
+    # rcbn['char_class'] = the_class
+#
+    # print('Please select a background from the list below. [INTEGERS ONLY PLEASE]')
+    # for i, each in enumerate(backgrounds):
+    #     print(f'{i}: {each}')
+    # the_background = int(input('Selection: '))
+    # the_background = list(backgrounds)[the_background]
+    # print(f'You selected {the_background}')
+    # rcbn['background'] = the_background
+#
+    # print('Please name your character.')
+    # the_name = input('Name: ')
+    # print(f'You are named {the_name}')
+    # rcbn['name'] = the_name
+#
+    # return rcbn
 
 
 def main():
-    your_character = race_class_back_name()
-    rac, cla, bac, nam = your_character['race'], your_character['char_class'], \
-        your_character['background'], your_character['name']
+    # your_character = race_class_back_name()
+    # rac, cla, bac, nam = your_character['race'], your_character['char_class'], \
+    #     your_character['background'], your_character['name']
 
     # Instantiate character object with race, class, and background selections
-    a_person = Character(race=rac, char_class=cla, background=bac, name=nam)
+    self = race.Race
+    print(self.name)
+    print(self.age)
+
+    a_person = race.Dragonborn(name=race.Race.get_name(self.name), aRace=race.Race.pick_race(self.aRace))
+    print(a_person.name)
+    print(a_person.hit_points)
     # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
 
-    assign_stats(a_person)
-    assign_proficiencies(a_person)
+    # assign_stats(a_person)
+    # assign_proficiencies(a_person)
     # TODO calculate proficiencies
 
     # TEST CODE
-    for each in a_person.stats:
-        print(f"{each}: {a_person.stats[each]}")
-    for each in a_person.proficiencies:
-        print(f"{each}: {a_person.proficiencies[each]}")
+    # for each in a_person.stats:
+    #     print(f"{each}: {a_person.stats[each]}")
+    # for each in a_person.proficiencies:
+    #     print(f"{each}: {a_person.proficiencies[each]}")
 
-    quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
-            f"{a_person.background.lower()} before they began adventuring.\n"
-    read_out(quote)
+    # quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
+    #         f"{a_person.background.lower()} before they began adventuring.\n"
+    # read_out(quote)
 
 
 if __name__ == '__main__':
