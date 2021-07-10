@@ -1,6 +1,8 @@
 import race
 
-class Dragonborn():
-    def __init__(self):
-        self.hp_bonus = 0
-        self.hit_points = 10
+
+class Dragonborn(race.Race):
+    def __init__(self, name, a_race, hp_bonus, hit_points):
+        super().__init__(self, name, a_race)
+        self.hp_bonus = hp_bonus
+        self.hit_points = hit_points
