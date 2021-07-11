@@ -262,38 +262,34 @@ def get_name():
     print(f'You are named {the_name}')
     return the_name
 
+
+def get_class():
+    print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
+    for i, each in enumerate(classes):
+        print(f'{i}: {each}')
+    the_class = int(input('Selection: '))
+    the_class = list(classes)[the_class]
+    print(f'You selected {the_class}')
+    return the_class
+
+
 def main():
-    # your_character = race_class_back_name()
-    # rac, cla, bac, nam = your_character['race'], your_character['char_class'], \
-    #     your_character['background'], your_character['name']
-
-    # Instantiate character object with race, class, and background selections
-    # self = Dragonborn
-    # print(self.name)
-    # print(self.age)
-
-    # a_person = Race(self, a_race=self.pick_race())
     name = get_name()
+    # char_class = get_class()
     a_person = Dragonborn(name=name)
-
-
     # print(a_person.name)
-    # print(a_person.hit_points)
-    # a_person = Character(race='Hill Dwarf', char_class='Barbarian', background='Acolyte', name='Ben')
+    # print(a_person.size)
+    # print(a_person.speed)
+    # print(a_person.STR)
+    # ages = a_person.age_range
+    # print(f"You can adventure between {ages[0]} and {ages[1]} years old.")
+    print("You have the following languages:")
+    for each in a_person.languages:
+        print(each)
 
-    # assign_stats(a_person)
-    # assign_proficiencies(a_person)
-    # TODO calculate proficiencies
-
-    # TEST CODE
-    # for each in a_person.stats:
-    #     print(f"{each}: {a_person.stats[each]}")
-    # for each in a_person.proficiencies:
-    #     print(f"{each}: {a_person.proficiencies[each]}")
-
-    # quote = f"Your {a_person.race.lower()} {a_person.char_class.lower()} named {a_person.name} was a " \
-    #         f"{a_person.background.lower()} before they began adventuring.\n"
-    # read_out(quote)
+    print("You have the following traits:")
+    for each in a_person.traits:
+        print(each.replace('-', ' '))
 
 
 if __name__ == '__main__':
