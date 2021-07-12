@@ -2,6 +2,7 @@ from textwrap import fill
 from random import randint
 from race import Race
 from Dragonborn import Dragonborn
+from Barbarian import Barbarian
 
 
 def roll_stats():
@@ -26,7 +27,21 @@ def get_name():
     return the_name
 
 
+def get_race():
+    races = ('dragonborn', 'dwarf', 'elf', 'gnome', 'half-elf',
+             'half-orc', 'halfling', 'human', 'tiefling')
+    print('Please select a race from the list below. [INTEGERS ONLY PLEASE]')
+    for i, each in enumerate(races):
+        print(f'{i}: {each}')
+    the_race = int(input('Selection: '))
+    the_race = list(races)[the_race]
+    print(f'You selected {the_race}')
+    return the_race
+
+
 def get_class():
+    classes = ('barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk',
+             'paladin', 'ranger', 'rogue', 'sorcerer', 'warlock', 'wizard')
     print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(classes):
         print(f'{i}: {each}')
@@ -35,11 +50,16 @@ def get_class():
     print(f'You selected {the_class}')
     return the_class
 
-
 def main():
     name = get_name()
     # char_class = get_class()
-    a_person = Dragonborn(name=name)
+    char_race = get_race()
+    char_class = get_class()
+    if char_race == 'dragonborn':
+        a_person = Dragonborn(name=name)
+
+    if char_class == 'barbarian':
+        a_barb = Barbarian(a_person)
     # print(a_person.name)
     # print(a_person.size)
     # print(a_person.speed)
@@ -47,12 +67,15 @@ def main():
     # ages = a_person.age_range
     # print(f"You can adventure between {ages[0]} and {ages[1]} years old.")
     print("You have the following languages:")
-    for each in a_person.languages:
+    for each in a_barb.languages:
         print(each)
 
     print("You have the following traits:")
-    for each in a_person.traits:
+    for each in a_barb.traits:
         print(each.replace('-', ' '))
+
+    print("You have selected the following proficiency bonuses:")
+    print(a_barb.pro_choices)
 
 
 if __name__ == '__main__':
