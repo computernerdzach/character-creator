@@ -37,15 +37,13 @@ class Barbarian(Dragonborn.Dragonborn):
     def pick_equipment(self):
         self.equipment["explorers-pack"] = 1
         self.equipment["javelin"] = 4
-        amount_a = 1
-        amount_b = 1
+        amount_a, amount_b = 1, 1
         a, b = 0, 0
         choices_a = {'great-axe': 1, 'martial-melee-weapon': 1}
         choices_b = {'handaxe': 2, 'simple-weapon': 1}
         print(f"Please select {amount_a} pieces of equipment from list A and {amount_b} pieces of equipment from "
               f"list B:")
-        list_a = []
-        list_b = []
+        list_a, list_b = [], []
         while a < amount_a:
             print("List A:")
             for i, each in enumerate(choices_a):
