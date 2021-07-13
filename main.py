@@ -1,6 +1,6 @@
-from textwrap import fill
+# from textwrap import fill
 from random import randint
-from race import Race
+# from character import Character
 from Dragonborn import Dragonborn
 from Barbarian import Barbarian
 
@@ -41,7 +41,7 @@ def get_race():
 
 def get_class():
     classes = ('barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk',
-             'paladin', 'ranger', 'rogue', 'sorcerer', 'warlock', 'wizard')
+               'paladin', 'ranger', 'rogue', 'sorcerer', 'warlock', 'wizard')
     print('Please select a class from the list below. [INTEGERS ONLY PLEASE]')
     for i, each in enumerate(classes):
         print(f'{i}: {each}')
@@ -49,6 +49,7 @@ def get_class():
     the_class = list(classes)[the_class]
     print(f'You selected {the_class}')
     return the_class
+
 
 def main():
     name = get_name()
@@ -80,5 +81,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
