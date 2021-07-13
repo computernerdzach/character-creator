@@ -1,4 +1,4 @@
-git import Dragonborn
+import Dragonborn
 
 
 class Barbarian(Dragonborn.Dragonborn):
