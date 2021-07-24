@@ -4,11 +4,12 @@ from argparse import ArgumentParser
 from Barbarian import Barbarian
 from races.Dragonborn import Dragonborn
 from races.Elf import Elf
-
+from races.Halfling import Halfling
 
 RACE_MAPPING = {
     'dragonborn': Dragonborn,
-    'elf': Elf
+    'elf': Elf,
+    'halfling': Halfling
 }
 
 CLASS_MAPPING = {
