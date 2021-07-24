@@ -2,10 +2,13 @@ import random
 from argparse import ArgumentParser
 
 from Barbarian import Barbarian
-from Dragonborn import Dragonborn
+from races.Dragonborn import Dragonborn
+from races.Elf import Elf
+
 
 RACE_MAPPING = {
-    'dragonborn': Dragonborn
+    'dragonborn': Dragonborn,
+    'elf': Elf
 }
 
 CLASS_MAPPING = {
@@ -110,3 +113,8 @@ if __name__ == '__main__':
     args = arg_parser.parse_args()
 
     create_character(args.name, args.race, args.char_class)
+
+    # name = input('Name: ')
+    # race = input('Race: ')
+    # char_class = input('Class: ')
+    # create_character(name, race, char_class)
