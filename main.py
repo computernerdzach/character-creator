@@ -78,6 +78,14 @@ def main():
     print("You have selected the following proficiency bonuses:")
     print(a_barb.proficiencies)
 
+    STR = a_barb.STR
+    DEX = a_barb.DEX
+    WIS = a_barb.WIS
+    INT = a_barb.INT
+    CHA = a_barb.CHA
+    CON = a_barb.CON
+
+    print(f"Strength: {STR}, Dexterity: {DEX}, Wisdom: {WIS}, Intelligence: {INT}, Charisma: {CHA}, Constitution: {CON}")
 
 if __name__ == '__main__':
     main()
