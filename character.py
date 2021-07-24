@@ -1,28 +1,26 @@
-from abc import ABC
-from random import randint
+import random
+from argparse import ArgumentParser
+
+from Barbarian import Barbarian
+from Dragonborn import Dragonborn
+
+RACE_MAPPING = {
+    'dragonborn': Dragonborn
+}
+
+CLASS_MAPPING = {
+    'barbarian': Barbarian
+}
 
 
-# def roll_stats():
-#     i, j = 0, 0
-#     the_stats = list()
-#     while i < 6:
-#         each_stat = list()
-#         while j < 4:
-#             each_stat.append(randint(0, 6))
-#             j += 1
-#         small = min(each_stat)
-#         each_stat.remove(small)
-#         a_stat = sum(each_stat)
-#         the_stats.append(a_stat)
-#         i += 1
-#         j = 0
-#     return the_stats
-    # print(the_stats)
+class Character(object):
+    # TODO add abstract methods
 
-
-class Character(ABC):
-    def __init__(self, name):
+    def __init__(self, name, race, char_class):
         self.name = name
+        self.race = RACE_MAPPING[race]()
+        self.char_class = CLASS_MAPPING[char_class]()
+
         self.STR = 0
         self.DEX = 0
         self.INT = 0
@@ -30,59 +28,85 @@ class Character(ABC):
         self.CHA = 0
         self.CON = 0
 
-        # stats = roll_stats()
-        # self.assign_stats(stats)
+        self.languages = self.race.languages
+        self.size = self.race.size
+        self.speed = self.race.speed
+        self.age_range = self.race.age_range
+        self.traits = self.race.traits
 
-    # @property
-    # def assign_stats(self, stats):
-    #     skills = ['STR', 'DEX', 'INT', 'WIS', 'CHA', 'CON']
-    #     length = len(skills)
-    #     print("Please assign your stat scores:")
-    #     while length > 0:
-    #         print(f"skill list length: {len(skills)}")
-    #         print("Scores:")
-    #         numbered_stats = enumerate(stats)
-    #         print("Stats:")
-    #         for j, every in numbered_stats:
-    #             print(f"({j} : {every})", end="")
-    #         print("")
-    #         print("Skills:")
-    #         for i, each in enumerate(skills):
-    #             print(f"({i} : {each}) ", end="")
-    #         print("")
-    #         score = int(input('Which score would you like to assign?'))
-    #         skill = int(input('Which skill would you like to apply it to?'))
-    #         if skills[skill] == 'STR':
-    #             self.STR = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         elif skills[skill] == 'DEX':
-    #             self.DEX = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         elif skills[skill] == 'INT':
-    #             self.INT = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         elif skills[skill] == 'WIS':
-    #             self.WIS = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         elif skills[skill] == 'CHA':
-    #             self.CHA = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         elif skills[skill] == 'CON':
-    #             self.CON = stats[score]
-    #             skills.remove(skills[skill])
-    #             stats.remove(stats[score])
-    #             length -= 1
-    #         else:
-    #             print("Incorrect input, try again.")
-    #     print(f"str: {self.STR}, dex: {self.DEX}, int: {self.INT}, wis: {self.WIS}, cha: {self.CHA}, con: {self.CON}")
+    def set_ability_scores(self):
+        self.__add_race_score_modifiers()
 
+    def __add_race_score_modifiers(self):
+        self.STR += self.race.score_modifiers['STR']
+        self.DEX += self.race.score_modifiers['DEX']
+        self.INT += self.race.score_modifiers['INT']
+        self.WIS += self.race.score_modifiers['WIS']
+        self.CHA += self.race.score_modifiers['CHA']
+        self.CON += self.race.score_modifiers['CON']
+
+    @staticmethod
+    def __roll_ability_score():
+        # Roll four 6-side die
+        sample = random.sample(range(1, 6), 4)
+        # Get the highest three rolls
+        highest = sorted(sample)[-3:]
+        # Record the total of the highest three
+        return sum(highest)
+
+    def roll_ability_scores(self):
+        rolls = list()
+        for x in range(6):
+            rolls.append(self.__roll_ability_score())
+        return rolls
+
+    @property
+    def ability_scores(self):
+        return {
+            'STR': self.STR,
+            'DEX': self.DEX,
+            'INT': self.INT,
+            'WIS': self.WIS,
+            'CHA': self.CHA,
+            'CON': self.CON
+        }
+
+
+def create_character(name, race, char_class):
+    char = Character(name, race, char_class)
+    available_scores = char.roll_ability_scores()
+    for ability_name in char.ability_scores.keys():
+        success = False
+        while not success:
+            print(f'Set your {ability_name}...')
+            print(f'Available scores: {available_scores}')
+            choice = input()
+            if not choice.isdigit():
+                print('Selection must be an integer!')
+                continue
+            choice = int(choice)
+            if choice not in available_scores:
+                print('Invalid choice!')
+            else:
+                setattr(char, ability_name, choice)
+                available_scores.remove(choice)
+                success = True
+
+    # TODO: User shouldn't need to call this; it should happen automatically.
+    char.set_ability_scores()
+
+    output = [f'{key}: {value}' for key, value in char.ability_scores.items()]
+    print(', '.join(output))
+
+    for attribute, value in char.__dict__.items():
+        print(f'{attribute}: {value}')
+
+
+if __name__ == '__main__':
+    arg_parser = ArgumentParser('Create a character')
+    arg_parser.add_argument('-n', '--name', required=True)
+    arg_parser.add_argument('-r', '--race', required=True, choices=RACE_MAPPING.keys())
+    arg_parser.add_argument('-c', '--char-class', required=True, choices=CLASS_MAPPING.keys())
+    args = arg_parser.parse_args()
+
+    create_character(args.name, args.race, args.char_class)
