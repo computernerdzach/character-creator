@@ -1,10 +1,6 @@
-import Dragonborn
-
-
-class Barbarian(Dragonborn.Dragonborn):
-
-    def __init__(self, char_obj):
-        super().__init__(char_obj)
+class Barbarian(object):
+    # TODO: This should inherit from a parent class
+    def __init__(self):
 
         self.saving_throws = ['STR', 'CON']
         self.equipment = {}
@@ -12,6 +8,9 @@ class Barbarian(Dragonborn.Dragonborn):
 
         self.pick_proficiencies()
         self.pick_equipment()
+
+    def __str__(self):
+        return 'Barbarian'
 
     @property
     def hit_die(self):
