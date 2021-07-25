@@ -5,11 +5,13 @@ from Barbarian import Barbarian
 from races.Dragonborn import Dragonborn
 from races.Elf import Elf
 from races.Halfling import Halfling
+from races.Half_Orc import HalfOrc
 
 RACE_MAPPING = {
     'dragonborn': Dragonborn,
     'elf': Elf,
-    'halfling': Halfling
+    'halfling': Halfling,
+    'half-orc': HalfOrc
 }
 
 CLASS_MAPPING = {
