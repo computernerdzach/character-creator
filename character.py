@@ -2,6 +2,7 @@ import random
 from argparse import ArgumentParser
 
 from Barbarian import Barbarian
+
 from races.Dragonborn import Dragonborn
 from races.Elf import Elf
 from races.Halfling import Halfling
