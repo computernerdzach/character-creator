@@ -7,13 +7,15 @@ from races.Elf import Elf
 from races.Halfling import Halfling
 from races.Half_Orc import HalfOrc
 from races.Dwarf import Dwarf
+from races.Gnome import Gnome
 
 RACE_MAPPING = {
     'dragonborn': Dragonborn,
     'elf': Elf,
     'halfling': Halfling,
     'half-orc': HalfOrc,
-    'dwarf': Dwarf
+    'dwarf': Dwarf,
+    'gnome': Gnome
 }
 
 CLASS_MAPPING = {
