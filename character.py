@@ -1,7 +1,7 @@
 import random
 from argparse import ArgumentParser
 
-from Barbarian import Barbarian
+from classes.Barbarian import Barbarian
 
 from races.Dragonborn import Dragonborn
 from races.Elf import Elf
@@ -126,7 +126,7 @@ if __name__ == '__main__':
     arg_parser.add_argument('-c', '--char-class', required=True, choices=CLASS_MAPPING.keys())
     args = arg_parser.parse_args()
 
-    create_character(args.name, args.race, args.char_class)
+    # create_character(args.name, args.race, args.char_class)
 
     # name = input('Name: ')
     # race = input('Race: ')
