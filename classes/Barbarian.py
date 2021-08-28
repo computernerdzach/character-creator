@@ -3,7 +3,7 @@ class Barbarian(object):
     def __init__(self):
 
         self.saving_throws = ['STR', 'CON']
-        self.equipment = {}
+        self.equipment = {'explorers-pack': 1, 'javelin': 4}
         self.proficiencies = list()
 
         self.pick_proficiencies()
@@ -19,6 +19,23 @@ class Barbarian(object):
     @property
     def tool_proficiencies(self):
         return 'light-armor', 'medium-armor', 'shields', 'simple-weapons', 'martial-weapons'
+
+    @property
+    def skill_proficiencies(self):
+        return {'quantity': 2,'choices': ('animal-handling', 'athletics', 'intimidation',
+                                          'nature', 'perception', 'survival')
+
+    # @property
+    # def saving_throw_assignment(self):
+    #     return 'STR', 'CON'
+
+    # @property
+    # def starting_equipment_assignment(self):
+    #     return {'explorers-pack': 1, 'javelins': 4}
+
+    @property
+    def sub_classes(self):
+        return 'berserker'
 
     def pick_proficiencies(self):
         pro_amount = 2
