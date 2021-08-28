@@ -30,12 +30,12 @@ class Barbarian(CharClass):
 
     @property
     def skill_proficiencies(self):
-        return {'quantity': 2,'choices': ('animal-handling', 'athletics', 'intimidation',
-                                          'nature', 'perception', 'survival')}
+        return {'quantity': 2, 'choices': ('animal-handling', 'athletics', 'intimidation',
+                                           'nature', 'perception', 'survival')}
 
-    # @property
-    # def saving_throw_assignment(self):
-    #     return 'STR', 'CON'
+    @property
+    def saving_throw_assignment(self):
+        return 'STR', 'CON'
 
     @property
     def starting_equipment_assignment(self):
@@ -88,3 +88,25 @@ class Barbarian(CharClass):
             key_b = choices_b[name_b]
             self.equipment[name_b] = key_b
             b += 1
+
+    def assign_savingthrows(self):
+        for each in self.saving_throws:
+            if each in self.saving_throw_assignment():
+                thing = self.saving_throw_switch(self, each)
+                thing += (self.STR / 2) + self.proficiency_bonus
+
+        # for each in self.saving_throw_assignment():
+        # if each == 'STR':
+        #     self.saving_throws[each] += ((self.STR/2) + self.proficiency_bonus)
+        # elif each ==
+
+    def saving_throw_switch(self, save):
+        switch = {
+            'STR': self.STR,
+            'DEX': self.DEX,
+            'INT': self.INT,
+            'WIS': self.WIS,
+            'CHA': self.CHA,
+            'CON': self.CON,
+        }
+        return switch.get(save, "Invalid input")

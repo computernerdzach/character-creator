@@ -47,10 +47,10 @@ class CharClass(ABC):
     def skill_proficiencies(self):
         pass
 
-    # @property
-    # @abstractmethod
-    # def saving_throws(self):
-    #     pass
+    @property
+    @abstractmethod
+    def saving_throw_assignment(self):
+        pass
 
     @property
     @abstractmethod
