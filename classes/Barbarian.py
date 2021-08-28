@@ -1,8 +1,16 @@
-class Barbarian(object):
+from classes.Char_Class import CharClass
+
+
+class Barbarian(CharClass):
     # TODO: This should inherit from a parent class
     def __init__(self):
 
-        self.saving_throws = ['STR', 'CON']
+        super().__init__()
+
+        self.hit_die = 12
+
+        self.saving_throws['STR'] = self.proficiency_bonus + self.STR
+        self.saving_throws['CON'] = self.proficiency_bonus + self.CON
         self.equipment = {'explorers-pack': 1, 'javelin': 4}
         self.proficiencies = list()
 
@@ -23,15 +31,15 @@ class Barbarian(object):
     @property
     def skill_proficiencies(self):
         return {'quantity': 2,'choices': ('animal-handling', 'athletics', 'intimidation',
-                                          'nature', 'perception', 'survival')
+                                          'nature', 'perception', 'survival')}
 
     # @property
     # def saving_throw_assignment(self):
     #     return 'STR', 'CON'
 
-    # @property
-    # def starting_equipment_assignment(self):
-    #     return {'explorers-pack': 1, 'javelins': 4}
+    @property
+    def starting_equipment_assignment(self):
+        return {'explorers-pack': 1, 'javelins': 4}
 
     @property
     def sub_classes(self):
