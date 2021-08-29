@@ -7,8 +7,6 @@ class Barbarian(CharClass):
 
         super().__init__()
 
-        self.hit_die = 12
-
         self.saving_throws['STR'] = self.proficiency_bonus + self.STR
         self.saving_throws['CON'] = self.proficiency_bonus + self.CON
         self.equipment = {'explorers-pack': 1, 'javelin': 4}
