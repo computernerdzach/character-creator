@@ -1,4 +1,4 @@
-from classes.Char_Class import CharClass
+from classes.CharClass import CharClass
 
 
 class Barbarian(CharClass):
