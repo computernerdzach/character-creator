@@ -56,7 +56,18 @@ def main():
     char_class = get_class()
 
     a_person = character.Character(name=name, race=char_race, char_class=char_class)
-    print(a_person.ability_scores)
+    print(f'Your size is {a_person.size}.')
+    print(f'Your speed is {a_person.speed}.')
+    print(f'Your hit-die is {a_person.hit_die}.')
+
+    print('Your starting equipment is:')
+    for i, item in enumerate(a_person.starting_equipment):
+        print(f'    {i+1}: {item} x {a_person.starting_equipment[item]}')
+
+    print('Your proficiencies are:')
+    for i, proficiency in enumerate(a_person.tool_proficiencies):
+        print(f'    {i + 1}: {proficiency}')
+
 
     # a_person.roll_ability_scores()
     # a_person.set_ability_scores()

@@ -50,6 +50,9 @@ class Character(object):
         self.speed = self.race.speed
         self.age_range = self.race.age_range
         self.traits = self.race.traits
+        self.hit_die = self.char_class.hit_die
+        self.tool_proficiencies = self.char_class.tool_proficiencies
+        self.starting_equipment = self.char_class.starting_equipment
 
     def set_ability_scores(self):
         self.__add_race_score_modifiers()
