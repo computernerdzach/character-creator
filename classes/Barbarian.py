@@ -7,8 +7,8 @@ class Barbarian(CharClass):
 
         super().__init__()
 
-        self.proficiencies = self.pick_proficiencies(self)
-        self.equipment = self.pick_equipment(self)
+        self.proficiencies = self.pick_proficiencies()
+        self.equipment = self.pick_equipment()
 
     def __str__(self):
         return 'Barbarian'
@@ -34,7 +34,7 @@ class Barbarian(CharClass):
         return 'berserker'
 
     @staticmethod
-    def pick_proficiencies(self):
+    def pick_proficiencies():
         pro_amount = 2
         proficiency_options = ['animal-handling', 'athletics', 'intimidation', 'nature', 'perception', 'survival']
         print(f"Please select {pro_amount} proficiencies.")
@@ -45,13 +45,12 @@ class Barbarian(CharClass):
                 print(f"{j}: {each}")
             choice = int(input('Selection: '))
             selections += proficiency_options[choice]
-            # self.proficiencies.append(proficiency_options[choice])
             proficiency_options.remove(proficiency_options[choice])
             i += 1
         return selections
 
     @staticmethod
-    def pick_equipment(self):
+    def pick_equipment():
         returnable = dict()
         returnable["explorers-pack"] = 1
         returnable["javelin"] = 4
