@@ -88,6 +88,18 @@ class Character(object):
             'CON': self.CON
         }
 
+    @property
+    def saving_throws(self) -> dict:
+        vals = {'STR': 0,
+                'DEX': 0,
+                'INT': 0,
+                'WIS': 0,
+                'CON': 0,
+                'CHA': 0}
+        for key in self.char_class.saving_throws:
+            vals[key] += self.char_class.proficiency_bonus + getattr(self, key)
+        return vals
+
 
 def create_character(name, race, char_class):
     char = Character(name, race, char_class)

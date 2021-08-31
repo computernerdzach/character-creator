@@ -26,17 +26,17 @@ class Barbarian(CharClass):
     def tool_proficiencies(self):
         return 'light-armor', 'medium-armor', 'shields', 'simple-weapons', 'martial-weapons'
 
-    @property
-    def skill_proficiencies(self):
-        return {'quantity': 2, 'choices': ('animal-handling', 'athletics', 'intimidation',
-                                           'nature', 'perception', 'survival')}
+    # @property
+    # def skill_proficiencies(self):
+    #     return {'quantity': 2, 'choices': ('animal-handling', 'athletics', 'intimidation',
+    #                                        'nature', 'perception', 'survival')}
 
     @property
-    def saving_throw_assignment(self):
+    def saving_throws(self):
         return 'STR', 'CON'
 
     @property
-    def starting_equipment_assignment(self):
+    def starting_equipment(self):
         return {'explorers-pack': 1, 'javelins': 4}
 
     @property
