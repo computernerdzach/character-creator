@@ -137,10 +137,3 @@ if __name__ == '__main__':
     arg_parser.add_argument('-r', '--race', required=True, choices=RACE_MAPPING.keys())
     arg_parser.add_argument('-c', '--char-class', required=True, choices=CLASS_MAPPING.keys())
     args = arg_parser.parse_args()
-
-    # create_character(args.name, args.race, args.char_class)
-
-    # name = input('Name: ')
-    # race = input('Race: ')
-    # char_class = input('Class: ')
-    # create_character(name, race, char_class)

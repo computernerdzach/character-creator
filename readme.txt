@@ -6,7 +6,7 @@ through the process of character generation.
 This process (and this is subject to change) should generally go like this:
 
 1) Pass in [name], [race], and [class] parameters for your character
-2) Based on [race] and [class] selections, user will be prompted for input regarding languages, proficiencies, etc
+2) Based on [race] and [class] selections, user will be prompted for input regarding languages, proficiencies, etc.
 3) Character sheet will display
 
 Long term goal:
