@@ -34,6 +34,7 @@ class Character(object):
     # TODO add abstract methods
 
     def __init__(self, name, race, char_class):
+
         self.name = name
         self.race = RACE_MAPPING[race]()
         self.char_class = CLASS_MAPPING[char_class]()
@@ -132,7 +133,6 @@ def create_character(name, race, char_class):
 
     for attribute, value in char.__dict__.items():
         print(f'{attribute}: {value}')
-
 
 if __name__ == '__main__':
     arg_parser = ArgumentParser('Create a character')

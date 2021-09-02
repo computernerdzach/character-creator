@@ -69,31 +69,5 @@ def main():
         print(f'    {i + 1}: {proficiency}')
 
 
-    # a_person.roll_ability_scores()
-    # a_person.set_ability_scores()
-
-    # if char_race == 'dragonborn':
-    #     a_person = Dragonborn(name=name)
-    #
-    # if char_class == 'barbarian':
-    #     a_barb = Barbarian(a_person)
-    # print(a_person.name)
-    # print(a_person.size)
-    # print(a_person.speed)
-    # print(a_person.STR)
-    # ages = a_person.age_range
-    # print(f"You can adventure between {ages[0]} and {ages[1]} years old.")
-    # print("You have the following languages:")
-    # for each in a_barb.languages:
-    #     print(each)
-    #
-    # print("You have the following traits:")
-    # for each in a_barb.traits:
-    #     print(each.replace('-', ' '))
-    #
-    # print("You have selected the following proficiency bonuses:")
-    # print(a_barb.proficiencies)
-
-
 if __name__ == '__main__':
     main()
