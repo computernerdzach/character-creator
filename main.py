@@ -1,8 +1,7 @@
 # from textwrap import fill
 from random import randint
 # from character import Character
-from Dragonborn import Dragonborn
-from Barbarian import Barbarian
+import character
 
 
 def roll_stats():
@@ -53,39 +52,22 @@ def get_class():
 
 def main():
     name = get_name()
-    # char_class = get_class()
     char_race = get_race()
     char_class = get_class()
-    if char_race == 'dragonborn':
-        a_person = Dragonborn(name=name)
 
-    if char_class == 'barbarian':
-        a_barb = Barbarian(a_person)
-    print(a_person.name)
-    print(a_person.size)
-    print(a_person.speed)
-    print(a_person.STR)
-    ages = a_person.age_range
-    print(f"You can adventure between {ages[0]} and {ages[1]} years old.")
-    print("You have the following languages:")
-    for each in a_barb.languages:
-        print(each)
+    a_person = character.Character(name=name, race=char_race, char_class=char_class)
+    print(f'Your size is {a_person.size}.')
+    print(f'Your speed is {a_person.speed}.')
+    print(f'Your hit-die is {a_person.hit_die}.')
 
-    print("You have the following traits:")
-    for each in a_barb.traits:
-        print(each.replace('-', ' '))
+    print('Your starting equipment is:')
+    for i, item in enumerate(a_person.starting_equipment):
+        print(f'    {i+1}: {item} x {a_person.starting_equipment[item]}')
 
-    print("You have selected the following proficiency bonuses:")
-    print(a_barb.proficiencies)
+    print('Your proficiencies are:')
+    for i, proficiency in enumerate(a_person.tool_proficiencies):
+        print(f'    {i + 1}: {proficiency}')
 
-    STR = a_barb.STR
-    DEX = a_barb.DEX
-    WIS = a_barb.WIS
-    INT = a_barb.INT
-    CHA = a_barb.CHA
-    CON = a_barb.CON
-
-    print(f"Strength: {STR}, Dexterity: {DEX}, Wisdom: {WIS}, Intelligence: {INT}, Charisma: {CHA}, Constitution: {CON}")
 
 if __name__ == '__main__':
     main()
