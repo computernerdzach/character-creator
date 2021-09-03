@@ -41,7 +41,7 @@ class Barbarian(CharClass):
 
     @property
     def starting_equipment(self):
-        return {'explorers-pack': 1, 'javelins': 4}
+        return {'explorers-pack': 1, 'javelin': 4}
 
     @property
     def sub_classes(self):

@@ -50,29 +50,32 @@ def get_class():
     return the_class
 
 
+def char_sheet(player):
+    print('-----     -----     -----')
+    print(
+        f'Name: {player.name}    |Race: {player.race}    |Class: {player.char_class}\n'
+        f'Size: {player.size}    |Speed: {player.speed}    |Hitdie: {player.hit_die}\n')
+    print('You have the following equipment:')
+    for equipment in player.equipment:
+        print(f'    {equipment}: x{player.equipment[equipment]}')
+    print('')
+    print('Your tool and skill proficiencies are:')
+    print('  Tool -')
+    for tool in player.tool_proficiencies:
+        print(f'    {tool}')
+    print('')
+    print('  Skill -')
+    for skill in player.proficiencies:
+        print(f'    {skill}')
+
+
 def main():
     name = get_name()
     char_race = get_race()
     char_class = get_class()
 
     a_person = character.Character(name=name, race=char_race, char_class=char_class)
-    print(f'Your size is {a_person.size}.')
-    print(f'Your speed is {a_person.speed}.')
-    print(f'Your hit-die is {a_person.hit_die}.')
-
-    print('Your current equipment is:')
-    for i, item in enumerate(a_person.equipment):
-        print(f'    {i+1}: {item} x {a_person.equipment[item]}')
-
-    print('Your tool proficiencies are:')
-    for i, tool_proficiency in enumerate(a_person.tool_proficiencies):
-        print(f'    {i + 1}: {tool_proficiency}')
-    print('Your skill proficiencies are:')
-    for i, skill_proficiency in enumerate(a_person.proficiencies):
-        print(f'    {i + 1}: {skill_proficiency}')
-
-    print(f'{a_person.name}, a {a_person.race} {a_person.char_class}, '
-          f'is between {a_person.age_range[0]} and {a_person.age_range[1]} years old.')
+    char_sheet(a_person)
 
 
 if __name__ == '__main__':
