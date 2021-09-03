@@ -7,9 +7,7 @@ class Barbarian(CharClass):
 
         super().__init__()
 
-        self.proficiencies = self.pick_proficiencies(self.proficiency_selections)
-        self.equipment = self.pick_equipment(self.equipment_selections,
-                                             self.starting_equipment)
+        self.equipment = self.pick_equipment(self.equipment_selections, self.starting_equipment)
 
     def __str__(self):
         return 'Barbarian'
@@ -21,6 +19,11 @@ class Barbarian(CharClass):
     @property
     def tool_proficiencies(self):
         return 'light-armor', 'medium-armor', 'shields', 'simple-weapons', 'martial-weapons'
+
+    @property
+    def proficiencies(self):
+        choice = self.pick_proficiencies(self.proficiency_selections)
+        return choice
 
     @property
     def saving_throws(self):

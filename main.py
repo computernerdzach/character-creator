@@ -64,9 +64,15 @@ def main():
     for i, item in enumerate(a_person.equipment):
         print(f'    {i+1}: {item} x {a_person.equipment[item]}')
 
-    print('Your proficiencies are:')
-    for i, proficiency in enumerate(a_person.tool_proficiencies):
-        print(f'    {i + 1}: {proficiency}')
+    print('Your tool proficiencies are:')
+    for i, tool_proficiency in enumerate(a_person.tool_proficiencies):
+        print(f'    {i + 1}: {tool_proficiency}')
+    print('Your skill proficiencies are:')
+    for i, skill_proficiency in enumerate(a_person.proficiencies):
+        print(f'    {i + 1}: {skill_proficiency}')
+
+    print(f'{a_person.name}, a {a_person.race} {a_person.char_class}, '
+          f'is between {a_person.age_range[0]} and {a_person.age_range[1]} years old.')
 
 
 if __name__ == '__main__':

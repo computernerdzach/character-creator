@@ -18,6 +18,11 @@ class CharClass(ABC):
 
     @property
     @abstractmethod
+    def proficiencies(self):
+        pass
+
+    @property
+    @abstractmethod
     def starting_equipment(self):
         pass
 
@@ -59,7 +64,7 @@ class CharClass(ABC):
             # user enters choice
             choice = int(input('Selection: '))
             # choice is added to character
-            selections += options[choice]
+            selections.append(options[choice])
             # choice is removed from selectable items and iterate count
             options.remove(options[choice])
             i += 1
