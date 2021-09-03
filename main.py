@@ -1,6 +1,4 @@
-# from textwrap import fill
 from random import randint
-# from character import Character
 import character
 
 
@@ -75,13 +73,7 @@ def char_sheet(player):
 
 def assign_stats(raw_stats, player):
     the_stats = raw_stats
-    assigned_stats = {'STR': 0,
-                      'DEX': 0,
-                      'INT': 0,
-                      'WIS': 0,
-                      'CHA': 0,
-                      'CON': 0}
-
+    assigned_stats = player.stats
     labels = list(assigned_stats.keys())
     unassigned = the_stats
 
@@ -102,23 +94,11 @@ def assign_stats(raw_stats, player):
 
         key = labels[user_stat]
         value = unassigned[user_number]
-        player.stats[key] = value
-
+        player.stats[key] += value
+        player.stats[key] += player.race.score_modifiers[key]
         labels.remove(key)
         unassigned.remove(value)
-
         j += 1
-    # return assigned_stats
-    # player_stats = player.stats
-    # while len(assigned_stats) > 0:
-    #     for picked_stat in assigned_stats:
-    #         for character_stat in player_stats:
-    #             if picked_stat == character_stat:
-    #                 player.stats[character_stat] = assigned_stats[picked_stat]
-    #                 assigned_stats.pop(picked_stat)
-    #                 player_stats.pop(character_stat)
-
-
 
 
 def main():

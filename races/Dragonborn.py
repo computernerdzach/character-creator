@@ -5,8 +5,8 @@ class Dragonborn(Race):
 
     def __init__(self):
         super().__init__()
-        self.score_modifiers['STR'] += 2
-        self.score_modifiers['CHA'] += 1
+        self.score_modifiers['STR'] = 2
+        self.score_modifiers['CHA'] = 1
         self.languages.append('draconic')
 
     def __str__(self):

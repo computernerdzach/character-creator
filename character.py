@@ -46,13 +46,6 @@ class Character(object):
                       'CHA': 0,
                       'CON': 0}
 
-        # self.STR = 0
-        # self.DEX = 0
-        # self.INT = 0
-        # self.WIS = 0
-        # self.CHA = 0
-        # self.CON = 0
-
         self.languages = self.race.languages
         self.size = self.race.size
         self.speed = self.race.speed
@@ -68,12 +61,12 @@ class Character(object):
         self.__add_race_score_modifiers()
 
     def __add_race_score_modifiers(self):
-        self.STR += self.race.score_modifiers['STR']
-        self.DEX += self.race.score_modifiers['DEX']
-        self.INT += self.race.score_modifiers['INT']
-        self.WIS += self.race.score_modifiers['WIS']
-        self.CHA += self.race.score_modifiers['CHA']
-        self.CON += self.race.score_modifiers['CON']
+        self.stats['STR'] += self.race.score_modifiers['STR']
+        self.stats['DEX'] += self.race.score_modifiers['DEX']
+        self.stats['INT'] += self.race.score_modifiers['INT']
+        self.stats['WIS'] += self.race.score_modifiers['WIS']
+        self.stats['CHA'] += self.race.score_modifiers['CHA']
+        self.stats['CON'] += self.race.score_modifiers['CON']
 
     @staticmethod
     def __roll_ability_score():
