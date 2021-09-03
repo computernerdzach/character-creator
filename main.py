@@ -60,9 +60,9 @@ def main():
     print(f'Your speed is {a_person.speed}.')
     print(f'Your hit-die is {a_person.hit_die}.')
 
-    print('Your starting equipment is:')
-    for i, item in enumerate(a_person.starting_equipment):
-        print(f'    {i+1}: {item} x {a_person.starting_equipment[item]}')
+    print('Your current equipment is:')
+    for i, item in enumerate(a_person.equipment):
+        print(f'    {i+1}: {item} x {a_person.equipment[item]}')
 
     print('Your proficiencies are:')
     for i, proficiency in enumerate(a_person.tool_proficiencies):

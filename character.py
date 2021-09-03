@@ -53,7 +53,8 @@ class Character(object):
         self.traits = self.race.traits
         self.hit_die = self.char_class.hit_die
         self.tool_proficiencies = self.char_class.tool_proficiencies
-        self.starting_equipment = self.char_class.starting_equipment
+        self.equipment = self.char_class.equipment
+        self.proficiency_selections = self.char_class.proficiency_selections
 
     def set_ability_scores(self):
         self.__add_race_score_modifiers()
