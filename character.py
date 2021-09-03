@@ -135,6 +135,7 @@ def create_character(name, race, char_class):
     for attribute, value in char.__dict__.items():
         print(f'{attribute}: {value}')
 
+
 if __name__ == '__main__':
     arg_parser = ArgumentParser('Create a character')
     arg_parser.add_argument('-n', '--name', required=True)

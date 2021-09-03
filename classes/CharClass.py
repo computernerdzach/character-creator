@@ -88,34 +88,3 @@ class CharClass(ABC):
                 i += 1
 
         return returnable
-
-
-
-        # amount_a, amount_b = 1, 1
-        # a, b = 0, 0
-        # # choices_a = {'great-axe': 1, 'martial-melee-weapon': 1}
-        # # choices_b = {'handaxe': 2, 'simple-weapon': 1}
-        # print(f"Please select {amount_a} pieces of equipment from list A and {amount_b} pieces of equipment from "
-        #       f"list B:")
-        # list_a, list_b = [], []
-        # while a < amount_a:
-        #     print("List A:")
-        #     for i, each in enumerate(choices_a):
-        #         print(f"{i}: {each}")
-        #         list_a.append(each)
-        #     choice_a = int(input("List A selection: "))
-        #     name_a = list_a[choice_a]
-        #     key_a = choices_a[name_a]
-        #     returnable[name_a] = key_a
-        #     a += 1
-        # while b < amount_b:
-        #     print("List B:")
-        #     for i, each in enumerate(choices_b):
-        #         print(f"{i}: {each}")
-        #         list_b.append(each)
-        #     choice_b = int(input("List B selection: "))
-        #     name_b = list_b[choice_b]
-        #     key_b = choices_b[name_b]
-        #     returnable[name_b] = key_b
-        #     b += 1
-        # return returnable
