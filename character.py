@@ -39,12 +39,19 @@ class Character(object):
         self.race = RACE_MAPPING[race]()
         self.char_class = CLASS_MAPPING[char_class]()
 
-        self.STR = 0
-        self.DEX = 0
-        self.INT = 0
-        self.WIS = 0
-        self.CHA = 0
-        self.CON = 0
+        self.stats = {'STR': 0,
+                      'DEX': 0,
+                      'INT': 0,
+                      'WIS': 0,
+                      'CHA': 0,
+                      'CON': 0}
+
+        # self.STR = 0
+        # self.DEX = 0
+        # self.INT = 0
+        # self.WIS = 0
+        # self.CHA = 0
+        # self.CON = 0
 
         self.languages = self.race.languages
         self.size = self.race.size

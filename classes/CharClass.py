@@ -77,11 +77,11 @@ class CharClass(ABC):
         returnable = starting
         for collection in selections:
 
-            choice_quant = next(iter(selections[collection]))
+            choice_quantity = next(iter(selections[collection]))
             i = 0
-            while i < choice_quant:
-                print(f'Please select {choice_quant} pieces of equipment.')
-                the_list = selections[collection][choice_quant]
+            while i < choice_quantity:
+                print(f'Please select {choice_quantity} pieces of equipment.')
+                the_list = selections[collection][choice_quantity]
                 items = []
                 for j, equipment in enumerate(the_list):
                     print(f'{j}: {equipment} x {the_list[equipment]}')

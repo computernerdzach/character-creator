@@ -67,6 +67,58 @@ def char_sheet(player):
     print('  Skill -')
     for skill in player.proficiencies:
         print(f'    {skill}')
+    print('')
+    print('--STATS--')
+    for stat in player.stats:
+        print(f'{stat}: {player.stats[stat]}')
+
+
+def assign_stats(raw_stats, player):
+    the_stats = raw_stats
+    assigned_stats = {'STR': 0,
+                      'DEX': 0,
+                      'INT': 0,
+                      'WIS': 0,
+                      'CHA': 0,
+                      'CON': 0}
+
+    labels = list(assigned_stats.keys())
+    unassigned = the_stats
+
+    j = 0
+    while j < len(assigned_stats):
+
+        print(f'Here are your unassigned rolls:')
+        for i, stat in enumerate(unassigned):
+            print(f'    {i}: {stat}')
+
+        print(f'Here are your unassigned stats:')
+        for k, label in enumerate(labels):
+            if player.stats[label] == 0:
+                print(f'    {k}: {label}')
+
+        user_number = int(input('Which roll would you like to use?\n-> '))
+        user_stat = int(input('Which stat would you like to apply it to?\n-> '))
+
+        key = labels[user_stat]
+        value = unassigned[user_number]
+        player.stats[key] = value
+
+        labels.remove(key)
+        unassigned.remove(value)
+
+        j += 1
+    # return assigned_stats
+    # player_stats = player.stats
+    # while len(assigned_stats) > 0:
+    #     for picked_stat in assigned_stats:
+    #         for character_stat in player_stats:
+    #             if picked_stat == character_stat:
+    #                 player.stats[character_stat] = assigned_stats[picked_stat]
+    #                 assigned_stats.pop(picked_stat)
+    #                 player_stats.pop(character_stat)
+
+
 
 
 def main():
@@ -75,6 +127,10 @@ def main():
     char_class = get_class()
 
     a_person = character.Character(name=name, race=char_race, char_class=char_class)
+
+    player_stats = roll_stats()
+    assign_stats(player_stats, a_person)
+
     char_sheet(a_person)
 
 
