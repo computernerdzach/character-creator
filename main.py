@@ -2,21 +2,6 @@ from random import randint
 import character
 
 
-def roll_stats():
-    i, j = 0, 0
-    all_scores = list()
-    while j < 6:
-        scores = list()
-        while i < 4:
-            scores.append(randint(0, 6))
-            i += 1
-        scores.remove(min(scores))
-        all_scores.append(sum(scores))
-        j += 1
-        i = 0
-    return all_scores
-
-
 def get_name():
     print('Please name your character.')
     the_name = input('Name: ')
@@ -67,50 +52,15 @@ def char_sheet(player):
         print(f'    {skill}')
     print('')
     print('--STATS--')
-    for stat in player.stats:
-        print(f'{stat}: {player.stats[stat]}')
-
-
-def assign_stats(raw_stats, player):
-    the_stats = raw_stats
-    assigned_stats = player.stats
-    labels = list(assigned_stats.keys())
-    unassigned = the_stats
-
-    j = 0
-    while j < len(assigned_stats):
-
-        print(f'Here are your unassigned rolls:')
-        for i, stat in enumerate(unassigned):
-            print(f'    {i}: {stat}')
-
-        print(f'Here are your unassigned stats:')
-        for k, label in enumerate(labels):
-            if player.stats[label] == 0:
-                print(f'    {k}: {label}')
-
-        user_number = int(input('Which roll would you like to use?\n-> '))
-        user_stat = int(input('Which stat would you like to apply it to?\n-> '))
-
-        key = labels[user_stat]
-        value = unassigned[user_number]
-        player.stats[key] += value
-        player.stats[key] += player.race.score_modifiers[key]
-        labels.remove(key)
-        unassigned.remove(value)
-        j += 1
+    for stat in player.stats.keys:
+        print(f'{stat}: {getattr(player.stats, stat)}')
 
 
 def main():
     name = get_name()
     char_race = get_race()
     char_class = get_class()
-
     a_person = character.Character(name=name, race=char_race, char_class=char_class)
-
-    player_stats = roll_stats()
-    assign_stats(player_stats, a_person)
-
     char_sheet(a_person)
 
 

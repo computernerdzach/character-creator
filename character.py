@@ -1,15 +1,15 @@
 import random
 from argparse import ArgumentParser
 
+from Stats import Stats
 from classes.Barbarian import Barbarian
-
 from races.Dragonborn import Dragonborn
-from races.Elf import Elf
-from races.Halfling import Halfling
-from races.Half_Orc import HalfOrc
 from races.Dwarf import Dwarf
+from races.Elf import Elf
 from races.Gnome import Gnome
 from races.Half_Elf import HalfElf
+from races.Half_Orc import HalfOrc
+from races.Halfling import Halfling
 from races.Human import Human
 from races.Tiefling import Tiefling
 
@@ -39,12 +39,9 @@ class Character(object):
         self.race = RACE_MAPPING[race]()
         self.char_class = CLASS_MAPPING[char_class]()
 
-        self.stats = {'STR': 0,
-                      'DEX': 0,
-                      'INT': 0,
-                      'WIS': 0,
-                      'CHA': 0,
-                      'CON': 0}
+        self.stats = Stats()
+        self.stats.assign_stats()
+        self.__add_race_score_modifiers()
 
         self.languages = self.race.languages
         self.size = self.race.size
@@ -57,16 +54,13 @@ class Character(object):
         self.equipment = self.char_class.equipment
         self.proficiency_selections = self.char_class.proficiency_selections
 
-    def set_ability_scores(self):
-        self.__add_race_score_modifiers()
-
     def __add_race_score_modifiers(self):
-        self.stats['STR'] += self.race.score_modifiers['STR']
-        self.stats['DEX'] += self.race.score_modifiers['DEX']
-        self.stats['INT'] += self.race.score_modifiers['INT']
-        self.stats['WIS'] += self.race.score_modifiers['WIS']
-        self.stats['CHA'] += self.race.score_modifiers['CHA']
-        self.stats['CON'] += self.race.score_modifiers['CON']
+        self.stats.STR += self.race.score_modifiers['STR']
+        self.stats.DEX += self.race.score_modifiers['DEX']
+        self.stats.INT += self.race.score_modifiers['INT']
+        self.stats.WIS += self.race.score_modifiers['WIS']
+        self.stats.CHA += self.race.score_modifiers['CHA']
+        self.stats.CON += self.race.score_modifiers['CON']
 
     @staticmethod
     def __roll_ability_score():
@@ -86,12 +80,12 @@ class Character(object):
     @property
     def ability_scores(self):
         return {
-            'STR': self.STR,
-            'DEX': self.DEX,
-            'INT': self.INT,
-            'WIS': self.WIS,
-            'CHA': self.CHA,
-            'CON': self.CON
+            'STR': self.stats.STR,
+            'DEX': self.stats.DEX,
+            'INT': self.stats.INT,
+            'WIS': self.stats.WIS,
+            'CHA': self.stats.CHA,
+            'CON': self.stats.CON
         }
 
     @property
@@ -126,9 +120,6 @@ def create_character(name, race, char_class):
                 setattr(char, ability_name, choice)
                 available_scores.remove(choice)
                 success = True
-
-    # TODO: User shouldn't need to call this; it should happen automatically.
-    char.set_ability_scores()
 
     output = [f'{key}: {value}' for key, value in char.ability_scores.items()]
     print(', '.join(output))
